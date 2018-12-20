@@ -10,7 +10,8 @@ import java.math.BigDecimal;
  */
 public class Test {
     public static void main(String[] args) {
-        IProduct product = new PhoneProduct(23L, "iphoneX", new BigDecimal("3999"));
-        System.out.println(String.format("商品的id是:%s, 商品的名称是:%s, 商品的价格是:%s", product.getId(), product.getName(), product.getPrice()));
+        IProduct iproduct = new PhoneDiscountProduct(23L, "iphoneX", new BigDecimal("3999"));
+        PhoneDiscountProduct product = (PhoneDiscountProduct) iproduct;
+        System.out.println(String.format("商品的id是:%s, 商品的名称是:%s, 商品的打折价是:%s, 商品的原价是:%s", product.getId(), product.getName(), product.getPrice(), product.getOriginPrice()));
     }
 }

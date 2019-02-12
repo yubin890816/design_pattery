@@ -1,7 +1,5 @@
 package com.yubin.design.principle.openclose;
 
-import java.math.BigDecimal;
-
 /**
  * 测试类
  *
@@ -10,8 +8,8 @@ import java.math.BigDecimal;
  */
 public class Test {
     public static void main(String[] args) {
-        IProduct iproduct = new PhoneDiscountProduct(23L, "iphoneX", new BigDecimal("3999"));
-        PhoneDiscountProduct product = (PhoneDiscountProduct) iproduct;
-        System.out.println(String.format("商品的id是:%s, 商品的名称是:%s, 商品的打折价是:%s, 商品的原价是:%s", product.getId(), product.getName(), product.getPrice(), product.getOriginPrice()));
+        ICourse iCourse = new JavaDiscountCourse(98L, "java设计模式之开闭原则", 299.00);
+        JavaDiscountCourse javaCourse = (JavaDiscountCourse) iCourse;
+        System.out.println(String.format("课程的id是:%s, 课程的名称是:%s, 课程的打折之后的价格是:%s, 课程的原价是: %s", javaCourse.getId(), javaCourse.getName(), javaCourse.getPrice(), javaCourse.getOriginPrice()));
     }
 }

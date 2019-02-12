@@ -1,22 +1,23 @@
 package com.yubin.design.principle.openclose;
 
-import java.math.BigDecimal;
-
 /**
- * 手机商品的实现
+ * Java课程
  *
  * @Author YUBIN
- * @create 2018-12-21
+ * @create 2019-02-13
  */
-public class PhoneProduct implements IProduct {
+public class JavaCourse implements ICourse {
 
     private Long id;
 
     private String name;
 
-    private BigDecimal price;
+    private Double price;
 
-    public PhoneProduct(Long id, String name, BigDecimal price) {
+    public JavaCourse() {
+    }
+
+    public JavaCourse(Long id, String name, Double price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -30,7 +31,7 @@ public class PhoneProduct implements IProduct {
         return this.name;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return this.price;
     }
 }

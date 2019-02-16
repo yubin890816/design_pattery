@@ -12,14 +12,8 @@ public class JavaDiscountCourse extends JavaCourse {
         super(id, name, price);
     }
 
-    // 获取原价
-    public Double getOriginPrice() {
-        return super.getPrice();
-    }
-
-    // 打折之后的价格
-    @Override
-    public Double getPrice() {
+    // 获取打折价格
+    public Double getDiscountPrice() {
         return super.getPrice() * 0.8;
     }
 }

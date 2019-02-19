@@ -10,7 +10,9 @@ public class StaticInnerClassSingleton {
 
     // 私有化构造函数
     private StaticInnerClassSingleton() {
-
+        if (InnerClass.staticInnerClassSingleton != null) {
+            throw new RuntimeException("单例构造器禁止反射调用");
+        }
     }
 
     private static class InnerClass {

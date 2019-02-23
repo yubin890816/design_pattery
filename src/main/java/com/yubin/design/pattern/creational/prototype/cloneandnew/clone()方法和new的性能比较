@@ -1,0 +1,88 @@
+（2）、clone()与new的性能比较
+这得具体看你的对象构造方法的耗时是多少，如果对象构造方法耗时很大的时候，clone比new快
+
+两个测试例子：
+
+第一个是构造方法无内容时：
+```
+/**
+ * @Author YUBIN
+ * @create 2019-02-23
+ */
+public class Demo implements Cloneable {
+
+    public Demo() {
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+```
+```
+/**
+ * clone方法和new性能比较测试类
+ *
+ * @Author YUBIN
+ * @create 2019-02-23
+ */
+public class Test {
+
+    private static final int COUNT = 10000;
+
+    public static void main(String[] args) throws CloneNotSupportedException {
+        testNew();
+        testClone();
+    }
+
+    private static void testNew() {
+        long start = System.nanoTime();
+        for (int i = 0; i < COUNT; i++) {
+            Demo demo = new Demo();
+        }
+        long end = System.nanoTime();
+        System.out.println("testNew  耗时:" + (end - start));
+    }
+
+    private static void testClone() throws CloneNotSupportedException {
+        long start = System.nanoTime();
+        Demo demo = new Demo();
+        for (int i = 0; i < COUNT; i++) {
+            Demo demo1 = (Demo) demo.clone();
+        }
+        long end = System.nanoTime();
+        System.out.println("testClone耗时:" + (end - start));
+    }
+}
+````
+结果：
+```
+testNew  耗时:2461607
+testClone耗时:3776948
+```
+第二个是构造方法消耗了一定量的时间：
+```
+/**
+ * @Author YUBIN
+ * @create 2019-02-23
+ */
+public class Demo implements Cloneable {
+
+    public Demo() {
+        Byte[] bytes = new Byte[1000];
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+```
+测试类同上
+结果：
+```
+testNew  耗时:26137217
+testClone耗时:2581527
+```
+正是为了避免这种耗时创建的过程，出现了原型模式
